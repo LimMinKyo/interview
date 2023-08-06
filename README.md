@@ -1,5 +1,7 @@
 # 면접 준비
 
+- [면접 질문 리스트](./question_list.md)
+
 ## 참고
 
 - [프론트엔드 면접 준비](https://github.com/junh0328/prepare_frontend_interview/)
