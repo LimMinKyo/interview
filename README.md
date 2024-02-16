@@ -1,7 +1,13 @@
 # 면접 준비
 
-- [면접 질문 리스트](./question_list.md)
-- [면접 대비용 질문 답변 리스트](./answer_list.md)
+## 면접 대비 공부
+
+- [공통](./Common)
+- [Javascript](./Javascript)
+- [프론트엔드](./Frontend)
+- [백엔드](./Backend)
+
+## [내가 받은 면접 질문 리스트](./question_list.md)
 
 ## 참고
 
