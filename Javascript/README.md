@@ -74,3 +74,80 @@ JavaScript는 단일 스레드로 동작합니다. 이는 한 번에 하나의 �
    - 호출 스택이 비어있지 않으면 이벤트 루프는 콜백 큐를 감시하며 호출 스택이 비어있을 때까지 대기합니다.
 
 이렇게 이벤트 루프를 통해 JavaScript는 비동기 작업을 효율적으로 처리하고, 동시에 싱글 스레드로 동작하는 특성을 유지합니다. 이벤트 루프를 이해하면 JavaScript에서 비동기 코드를 작성하고 이해하는 데 도움이 됩니다.
+
+## 이벤트 버블링과 이벤트 캡쳐링에 대해서 설명해보시겠어요?
+
+캡처링(Event Capturing)은 이벤트가 상위 요소에서 하위 요소로 전파되는 것이며, 버블링(Event Bubbling)은 이벤트가 하위 요소에서 상위 요소로 전파되는 것입니다.
+
+따라서 캡처링은 상위 요소에서 하위 요소로, 버블링은 하위 요소에서 상위 요소로 이벤트가 전파됩니다.
+
+이벤트 캡처링과 이벤트 버블링은 둘 다 이벤트가 DOM 트리를 따라 전파되는 방식을 설명하지만, 발생하는 방향에 차이가 있습니다. 기본적으로는 이벤트 버블링이 사용되지만, 이벤트 캡처링을 활용하여 이벤트 핸들러를 부모 요소에서부터 미리 처리할 수도 있습니다. 이러한 이벤트 전파 모델을 이해하면 이벤트 처리 및 이벤트 위임 등을 더욱 효과적으로 구현할 수 있습니다.
+
+## 이벤트 버블링과 이벤트 캡쳐링이 둘다 있을 때 어떤 것이 적용되나요?
+
+이벤트 버블링과 이벤트 캡처링이 둘 다 적용되는 경우에는 브라우저에서는 일반적으로 이벤트 캡처링이 먼저 발생한 후 이벤트 버블링이 발생합니다. 이것은 이벤트 흐름이 이벤트 캡처링 단계로 시작하여 이벤트 버블링 단계로 이어지는 것을 의미합니다.
+
+따라서, 이벤트가 발생한 요소에서 시작하여 가장 먼 조상 요소까지 이벤트 캡처링 단계를 거쳐 올라가고, 이후에 다시 발생한 요소로부터 시작하여 가장 먼 조상 요소까지 이벤트 버블링 단계를 거쳐 내려오게 됩니다.
+
+이것은 W3C의 이벤트 모델에 따른 동작 방식이며, 대부분의 브라우저가 이를 따르고 있습니다. 그러나 일부 브라우저는 이벤트 캡처링과 이벤트 버블링을 제대로 지원하지 않을 수도 있습니다. 이 경우, 이벤트 핸들러가 등록된 순서에 따라 동작할 수 있습니다.
+
+## 이벤트 전파와 이벤트 위임에 대해서 설명해주시겠어요?
+
+이벤트 전파(Event Propagation)와 이벤트 위임(Event Delegation)은 JavaScript에서 이벤트 처리에 관련된 개념입니다.
+
+1. **이벤트 전파(Event Propagation)**:
+
+   - 이벤트 전파는 HTML 요소 간에 발생한 이벤트가 DOM 트리를 따라 전파되는 과정을 의미합니다.
+   - 이벤트 전파에는 캡처링 단계, 타겟 단계, 그리고 버블링 단계가 있습니다.
+
+2. **이벤트 위임(Event Delegation)**:
+
+   - 이벤트 위임은 이벤트를 처리할 때, 상위 요소에 이벤트 핸들러를 등록하고 하위 요소의 이벤트를 해당 핸들러에서 처리하는 기법입니다.
+   - 이벤트 위임을 사용하면 동적으로 생성되는 요소에 대해서도 이벤트를 처리할 수 있습니다.
+   - 예를 들어, 리스트 요소들 각각에 이벤트 핸들러를 등록하는 대신, 리스트의 상위 요소에 하나의 이벤트 핸들러를 등록하고 클릭된 요소에 대한 처리를 구현할 수 있습니다.
+
+이벤트 전파는 DOM 트리를 따라 이벤트가 전파되는 방식을 설명하는 개념이며, 이벤트 위임은 상위 요소에서 하위 요소의 이벤트를 처리하는 기법을 의미합니다. 이벤트 위임은 동적으로 생성되는 요소나 여러 요소에 대해 효율적으로 이벤트를 처리할 수 있도록 도와줍니다.
+
+## event.target과 event.currentTarget의 차이점은 무엇입니까?
+
+가정하에 아래와 같은 HTML 구조가 있다고 가정합니다:
+
+```html
+<div id="outer">
+  <div id="inner">
+    <button>Click me</button>
+  </div>
+</div>
+```
+
+그리고 이 HTML에 대한 클릭 이벤트 핸들러가 아래와 같이 설정되어 있다고 가정합니다:
+
+```javascript
+document.getElementById("outer").addEventListener("click", function (event) {
+  console.log("Outer clicked!");
+  console.log("event.target:", event.target);
+  console.log("event.currentTarget:", event.currentTarget);
+});
+
+document.getElementById("inner").addEventListener("click", function (event) {
+  console.log("Inner clicked!");
+  console.log("event.target:", event.target);
+  console.log("event.currentTarget:", event.currentTarget);
+});
+```
+
+이제 버튼을 클릭해보겠습니다. 버튼이 클릭되면 이벤트는 버블링되며, `button` 요소에서부터 부모 요소인 `div` 요소, 마지막으로 `document`까지 버블링됩니다.
+
+버튼을 클릭했을 때의 콘솔 출력은 다음과 같습니다:
+
+```
+Inner clicked!
+event.target: <button>Click me</button>
+event.currentTarget: <div id="inner">...</div>
+
+Outer clicked!
+event.target: <button>Click me</button>
+event.currentTarget: <div id="outer">...</div>
+```
+
+위의 출력에서 볼 수 있듯이, `event.target`은 실제로 클릭된 요소인 버튼을 가리키고 있고, `event.currentTarget`은 이벤트 핸들러가 현재 실행 중인 요소를 가리킵니다. 내부 이벤트 핸들러에서는 `event.currentTarget`이 내부 `div#inner` 요소를 가리키고, 외부 이벤트 핸들러에서는 `event.currentTarget`이 외부 `div#outer` 요소를 가리킵니다.
