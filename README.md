@@ -2,10 +2,13 @@
 
 ## 면접 대비 공부
 
-- [공통](./Common)
-- [Javascript](./Javascript)
-- [프론트엔드](./Frontend)
-- [백엔드](./Backend)
+- [CS](./ComputerScience/README.md)
+- [자료구조](./DataStructure/README.md)
+- [알고리즘](./Common/README.md)
+- [공통](./Common/README.md)
+- [프론트엔드](./Frontend/README.md)
+- [백엔드](./Backend/README.md)
+- [Javascript](./Javascript/README.md)
 
 ## [내가 받은 면접 질문 리스트](./question_list.md)
 
