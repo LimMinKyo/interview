@@ -9,6 +9,7 @@
 - [프론트엔드](./Frontend/README.md)
 - [백엔드](./Backend/README.md)
 - [Javascript](./Javascript/README.md)
+- [Tavascript](./Typescript/README.md)
 
 ## [내가 받은 면접 질문 리스트](./question_list.md)
 
