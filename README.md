@@ -8,6 +8,7 @@
 - [공통](./Common/README.md)
 - [프론트엔드](./Frontend/README.md)
 - [백엔드](./Backend/README.md)
+- [인프라](./Infra/README.md)
 - [Javascript](./Javascript/README.md)
 - [Tavascript](./Typescript/README.md)
 
